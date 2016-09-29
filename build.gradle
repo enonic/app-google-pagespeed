@@ -1,0 +1,51 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven {
+            url 'http://repo.enonic.com/public'
+        }
+    }
+
+    dependencies {
+        classpath "com.enonic.xp:gradle-plugin:${xpVersion}"
+    }
+}
+
+apply plugin: 'com.enonic.xp.app'
+apply plugin: 'maven-publish'
+
+app {
+    name = project.appName
+    displayName = project.displayName
+    vendorName = 'Enonic AS'
+    vendorUrl = 'http://enonic.com'
+}
+
+dependencies {
+    include "com.enonic.xp:lib-portal:${xpVersion}"
+    include "com.enonic.xp:lib-content:${xpVersion}"
+    include "com.enonic.xp:lib-thymeleaf:${xpVersion}"
+    include "com.enonic.xp:lib-http-client:${xpVersion}"
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    maven {
+        url 'http://repo.enonic.com/public'
+    }
+}
+
+publishing {
+  publications {
+    mavenJava( MavenPublication ) {
+      from components.java
+    }
+  }
+  repositories {
+    maven {
+      url 'http://repo.enonic.com/artifactory/public'
+    }
+  }
+}

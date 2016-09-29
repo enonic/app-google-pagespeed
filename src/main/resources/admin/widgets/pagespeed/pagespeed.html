@@ -1,0 +1,77 @@
+<html>
+<head>
+    <link rel="stylesheet" data-th-href="${portal.assetUrl({'_path=css/pagespeed.css'})}"/>
+    <script data-th-src="${portal.assetUrl({'_path=js/jquery-3.1.1.min.js'})}"></script>
+    <script data-th-src="${portal.assetUrl({'_path=js/pagespeed.js'})}"></script>
+</head>
+<body>
+<main class="pagespeed__widget">
+    <a data-th-href="${pageUrl}" data-th-text="${pageUrl}"></a>
+    <div data-th-if="${errorExists}">
+        <h2>Error</h2>
+        <div data-th-each="error : ${errors}" data-th-text="${error}">
+
+        </div>
+        <p>Make sure valid API key is configured and that PageSpeed can access your URL</p>
+        <a href="https://developers.google.com/speed/docs/insights/v1/getting_started">Get API key</a>
+    </div>
+    <div data-th-if="${!errorExists}">
+
+        <section data-th-each="device : ${devices}">
+            <h2 class="pagespeed__device-heading" data-th-text="${device.title}"></h2>
+
+
+            <section class="pagespeed__section" data-th-if="${device.data.speed}">
+                <h3 class="pagespeed__score" data-th-classappend="'pagespeed__score--' + ${device.data.speed.grade}">
+                    <span class="pagespeed__score-title">Speed: </span>
+                    <span class="pagespeed__score-value" data-th-text="${device.data.speed.score + ' / 100'}"></span>
+                </h3>
+
+                <div data-th-if="${device.data.warnings.speed}">
+                    <button class="pagespeed__button--warnings">Show warnings</button>
+
+                    <ul class="pagespeed__warning-list">
+                        <li class="pagespeed__warning-item" data-th-each="warning : ${device.data.warnings.speed}">
+                            <span data-th-text="${warning.title}">Warning title</span>
+                        <span class="pagespeed__warning-impact"
+                              data-th-text="${#numbers.formatDecimal(warning.ruleImpact,1,2)}">Warning rule impact</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <section class="pagespeed__section" data-th-if="${device.data.usability}">
+                <h3 class="pagespeed__score"
+                    data-th-classappend="'pagespeed__score--' + ${device.data.usability.grade}">
+                    <span class="pagespeed__score-title">Usability: </span>
+                    <span class="pagespeed__score-value" data-th-text="${device.data.usability.score + ' / 100'}"></span>
+                </h3>
+
+                <div data-th-if="${device.data.warnings.usability}">
+                    <button class="pagespeed__button--warnings">Show warnings</button>
+
+                    <ul class="pagespeed__warning-list">
+                        <li class="pagespeed__warning-item" data-th-each="warning : ${device.data.warnings.usability}">
+                            <span data-th-text="${warning.title}">Warning title</span>
+                    <span class="pagespeed__warning-impact"
+                          data-th-text="${#numbers.formatDecimal(warning.ruleImpact,1,2)}">Warning rule impact</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </section>
+        </section>
+
+
+        <a class="pagespeed__full-report"
+           data-th-href="'https://developers.google.com/speed/pagespeed/insights/pagespeed.html?url=' + ${pageUrl}" target="_blank">Go to
+            full report</a>
+    </div>
+
+
+
+</main>
+</body>
+</html>
+

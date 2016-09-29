@@ -1,0 +1,6 @@
+<widget>
+    <display-name>Google Pagespeed</display-name>
+    <interfaces>
+        <interface>contentstudio.detailpanel</interface>
+    </interfaces>
+</widget>

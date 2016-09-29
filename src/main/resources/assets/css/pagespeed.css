@@ -1,0 +1,48 @@
+.pagespeed__widget {
+    padding: 10px;
+    font-size: 12px;
+}
+
+.pagespeed__section {
+    margin-bottom: 30px;
+}
+
+.pagespeed__device-heading {
+    font-size: 20px;
+}
+
+.pagespeed__score {
+    color: #fff;
+    padding: 0 10px;
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.pagespeed__score--error {
+    background: #dd4b39;
+}
+
+.pagespeed__score--warning {
+    background: #fda100;
+}
+
+.pagespeed__score--ok {
+    background: #009a2d;
+}
+
+.pagespeed__warning-item {
+    padding: 5px 10px;
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+.pagespeed__warning-impact {
+    font-weight: bold;
+    background: #eee;
+    padding: 0 2px;
+}
+
+.pagespeed__warning-list {
+    display: none;
+}
